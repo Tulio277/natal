@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Squares</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('background-image.jpg') no-repeat center center;
+      background-size: cover;
+      position: relative;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 10px;
+      width: 80%;
+      height: 60%;
+    }
+
+    .square {
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .square:hover {
+      transform: scale(1.1);
+    }
+
+    .message,
+    .temp-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
+      z-index: 1000;
+    }
+
+    .temp-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Garante que a imagem preencha a tela */
+    }
+
+    .message {
+      text-align: center;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 2rem;
+      z-index: 1001; /* Garantir que a mensagem esteja sobreposta */
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="square" data-index="1">1</div>
+    <div class="square" data-index="2">2</div>
+    <div class="square" data-index="3">3</div>
+    <div class="square" data-index="4">4</div>
+    <div class="square" data-index="5">5</div>
+    <div class="square" data-index="6">6</div>
+    <div class="square" data-index="7">7</div>
+    <div class="square" data-index="8">8</div>
+    <div class="square" data-index="9">9</div>
+    <div class="square" data-index="10">10</div>
+  </div>
+
+  <div class="message" id="message"></div>
+
+  <div class="temp-image" id="tempImage">
+    <img src="" alt="Temporary Image">
+  </div>
+
+  <script>
+    const squares = document.querySelectorAll('.square');
+    const messageBox = document.getElementById('message');
+    const tempImageBox = document.getElementById('tempImage');
+    const tempImage = tempImageBox.querySelector('img');
+
+    const imageMap = {
+      1: 'imgs/vidaloca.png',
+      2: 'imgs/formatura.png',
+      3: 'imgs/dormindo01.png',
+      4: 'imgs/trufado.png',
+      5: 'imgs/pinoquio.png',
+      6: 'imgs/sorrizo.png',
+      7: 'imgs/dormindo.png',
+      8: 'imgs/dormindo.png',
+      9: 'imgs/valentina.png',
+      10: 'imgs/vidaloca.png'
+    };
+
+    squares.forEach((square) => {
+      square.addEventListener('click', () => {
+        const index = square.dataset.index;
+
+        if (index === '2') {
+          showTempImage(imageMap[index], true, "Suave na nave e cheirosa, valentina guardou seu presente, está no repouso dela!");
+        } 
+        if (index === '9' ) {
+          showTempImage(imageMap[index], true, "Pegue seu presente!");
+        } 
+        else if (index ==='1' || index ==='10'){
+          showTempImage(imageMap[index], true, "É nóiz malandragem!");
+        }
+        else if (index ==='3'){
+          showTempImage(imageMap[index], true, "zzzzzz");
+        }
+        else if (index ==='4'){
+          showTempImage(imageMap[index], true, "Igual mel trufado!");
+        }
+        else if (index ==='5'){
+          showTempImage(imageMap[index], true, "Nada por aqui!");
+        }
+        else if (index ==='6'){
+          showTempImage(imageMap[index], true, "Meu dentista fez um bom trabalho!");
+        }
+        else if (index ==='7'){
+          showTempImage(imageMap[index], true, "Babando que é uma beleza!");
+        }
+        else if (index ==='8'){
+          showTempImage(imageMap[index], true, "Babando ainda!");
+        }
+        else{
+            return
+        }
+      });
+    });
+
+    function showTempImage(imageSrc, showMessageAfter = true, msg) {
+      tempImage.src = imageSrc;
+      tempImageBox.style.display = 'flex'; // Mostra a imagem em tela cheia
+
+      setTimeout(() => {
+        tempImageBox.style.display = 'none';
+        tempImage.src = '';
+
+        if (showMessageAfter) {
+          showMessage(msg);
+        }
+      }, 5000);
+    }
+
+    function showMessage(msg) {
+      messageBox.innerText = msg
+      messageBox.style.display = 'flex';
+
+      setTimeout(() => {
+        messageBox.style.display = 'none';
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
