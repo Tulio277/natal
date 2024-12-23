@@ -18,12 +18,13 @@
     img {
       max-width: 100%;
       max-height: 100%;
+      transition: opacity 0.5s ease; /* Suaviza a troca da imagem */
     }
 
     #audio {
       position: absolute;
       width: 50%; /* Metade da tela */
-      top: 50%; /* Centralizado verticalmente */
+      top: 70%; /* Centralizado verticalmente */
       left: 50%; /* Centralizado horizontalmente */
       transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
       background-color: rgba(255, 255, 255, 0.8); /* Fundo semitransparente para melhor visualização */
@@ -50,32 +51,37 @@
   </style>
 </head>
 <body>
-  <img src="imgs/jigsaw-movie-2017-billy-the-puppet-on-a-tv-screen.png" alt="A descriptive image">
+  <!-- Imagem inicial -->
+  <img id="dynamicImage" src="imgs/natal.png" alt="A descriptive image">
+  
+  <!-- Áudio -->
   <audio id="audio" controls>
-    <source src="audio/WhatsApp Audio 2024-12-21 at 19.20.36.mp4" type="audio/mpeg">
+    <source src="audio/jigsaw.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+  
+  <!-- Botão de navegação -->
   <button id="nextButton" onclick="navigate()">QUE COMECE O JOGO</button>
 
   <script>
     const audio = document.getElementById('audio');
     const nextButton = document.getElementById('nextButton');
+    const dynamicImage = document.getElementById('dynamicImage');
 
-    // Attempt to play the audio when the page loads
-    window.onload = () => {
-      audio.play().catch(() => {
-        alert('Clique na página para ativar o áudio.');
-      });
-    };
-
-    // Show the button when the audio ends
-    audio.addEventListener('ended', () => {
-      nextButton.style.display = 'block';
+    // Substituir a imagem quando o áudio começa
+    audio.addEventListener('play', () => {
+      dynamicImage.src = "imgs/jigsaw-movie-2017-billy-the-puppet-on-a-tv-screen.png"; // Substitua pelo caminho da nova imagem
     });
 
-    // Function to navigate to the next page
+    // Restaurar a imagem original quando o áudio termina
+    audio.addEventListener('ended', () => {
+      dynamicImage.src = "imgs/natal.png"; // Caminho da imagem original
+      nextButton.style.display = 'block'; // Exibe o botão após o áudio
+    });
+
+    // Função para navegar para a próxima página
     function navigate() {
-      window.location.href = 'sorteio.html'; // Replace with your second screen URL
+      window.location.href = 'pagina2.html'; // Substitua pela URL do próximo conteúdo
     }
   </script>
 </body>
