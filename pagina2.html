@@ -14,6 +14,7 @@
       background: url('background-image.jpg') no-repeat center center;
       background-size: cover;
       position: relative;
+      background-color: slategrey;
     }
 
     .grid {
@@ -85,6 +86,7 @@
     <div class="square" data-index="8">8</div>
     <div class="square" data-index="9">9</div>
     <div class="square" data-index="10">10</div>
+    <button id="nextButton" onclick="navigate()">FIM</button>
   </div>
 
   <div class="message" id="message"></div>
@@ -92,7 +94,6 @@
   <div class="temp-image" id="tempImage">
     <img src="" alt="Temporary Image">
   </div>
-
   <script>
     const squares = document.querySelectorAll('.square');
     const messageBox = document.getElementById('message');
@@ -171,6 +172,11 @@
         messageBox.style.display = 'none';
       }, 5000);
     }
+
+    function navigate() {
+      window.location.href = 'index.html'; // Substitua pela URL do próximo conteúdo
+    }
+
   </script>
 </body>
 </html>
