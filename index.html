@@ -56,12 +56,9 @@
   
   <!-- Áudio -->
   <audio id="audio" controls>
-    <source src="audio/jigsaw.mp3" type="audio/mpeg">
+    <source src="audio/jigsaw2.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-  
-  <!-- Botão de navegação -->
-  <button id="nextButton" onclick="navigate()">QUE COMECE O JOGO</button>
 
   <script>
     const audio = document.getElementById('audio');
@@ -75,8 +72,7 @@
 
     // Restaurar a imagem original quando o áudio termina
     audio.addEventListener('ended', () => {
-      dynamicImage.src = "imgs/natal.png"; // Caminho da imagem original
-      nextButton.style.display = 'block'; // Exibe o botão após o áudio
+      navigate()
     });
 
     // Função para navegar para a próxima página
