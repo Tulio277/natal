@@ -82,7 +82,7 @@
             const backgroundImage = document.getElementById('background-image');
             const hiddenMessage = document.getElementById('hidden-message');
 
-            if (hours !== 23 && minutes >= 0 && minutes <= 59) {
+            if (hours === 23 && minutes >= 0 && minutes <= 59) {
                 message.style.display = 'block';
                 backgroundImage.style.display = 'block';
                 hiddenMessage.classList.remove('active');
